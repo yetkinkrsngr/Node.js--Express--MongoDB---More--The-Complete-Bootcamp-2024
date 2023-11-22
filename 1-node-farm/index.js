@@ -2,6 +2,7 @@ const fs = require("fs");
 const http = require("http");
 const url = require("url");
 const replaceTemplate = require("./modules/replaceTemplate");
+const slugify = require("slugify");
 ///////// File
 /* // Blocking, synchronous way
 //okunacak dosya ve karakter seti sekron olarak
@@ -40,6 +41,8 @@ const tempOverview = fs.readFileSync(
   `${__dirname}/templates/template-overview.html`,
   "utf-8"
 );
+const slugs = dataObj.map((el) => slugify(el.productName, { lower: true }));
+console.log(slugs);
 const tempCard = fs.readFileSync(
   `${__dirname}/templates/template-card.html`,
   "utf-8"
